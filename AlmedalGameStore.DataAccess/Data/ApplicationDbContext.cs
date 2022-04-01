@@ -15,5 +15,8 @@ namespace AlmedalGameStore.DataAccess
         //Genres blir namnet på vårt table
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet <Cart> Carts { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
