@@ -31,7 +31,7 @@ namespace AlmedalGameStoreWeb.Controllers
         //hämtar id från asp-route-id i index view på produkt man interaktar med
         public IActionResult Details(int id)
         {
-            ShoppingCart cartObj = new()
+            Cart cartObj = new()
             {
                 Count = 1,
                 //för att kunna lägga till en produkt i kundkorg
