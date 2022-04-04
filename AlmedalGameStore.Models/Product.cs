@@ -23,7 +23,6 @@ namespace AlmedalGameStore.Models
         public string ImageUrl { get; set; }
         public string SystemReq { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public int MyProperty { get; set; }
         public int PgRating { get; set; }
 
         public string Publisher { get; set; }
