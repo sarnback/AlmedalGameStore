@@ -45,25 +45,37 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
         {
-            //komplett dbset!, Assigns to a class so if it directly return the db set it will be sufficent
-            IQueryable<T> query = dbSet;
+            if (tracked)
+            {
+                IQueryable<T> query = dbSet;
 
-            
-            
-            if (includeProperties != null)
-            {
                 query = query.Where(filter);
+                if (includeProperties != null)
+                {
+                    foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        query = query.Include(includeProp);
+                    }
+                }
+                return query.FirstOrDefault();
             }
-            if (includeProperties != null)
-            {      
-            foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            else
             {
-                query = query.Include(includeProp);
+                IQueryable<T> query = dbSet.AsNoTracking();
+
+                query = query.Where(filter);
+                if (includeProperties != null)
+                {
+                    foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        query = query.Include(includeProp);
+                    }
+                }
+                return query.FirstOrDefault();
             }
-            }
-            return query.FirstOrDefault();
+
         }
 
         public void Remove(T entity)

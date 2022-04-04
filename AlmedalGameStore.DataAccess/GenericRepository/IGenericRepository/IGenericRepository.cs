@@ -12,7 +12,7 @@ namespace AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository
     {
         // T - Genre 
         //När vi bara hämtar en record behöver man allitd ett filter condition
-        T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null);
+        T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true);
         IEnumerable<T> GetAll(string? includeProperties = null);
         //implementera en void av entity som ska adderas
         void Add(T entity);

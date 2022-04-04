@@ -1,6 +1,9 @@
 ﻿
+using AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository;
 using AlmedalGameStore.Models;
+using AlmedalGameStore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace AlmedalGameStoreWeb.Controllers
@@ -10,15 +13,34 @@ namespace AlmedalGameStoreWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
-
+        //Vi ska hämta alla produkter i en IEbumerable lista och skicka dem till vyn
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties:"Genre");
+
+            return View(productList);
+
+        }
+        //hämtar id från asp-route-id i index view på produkt man interaktar med
+        public IActionResult Details(int id)
+        {
+            ShoppingCart cartObj = new()
+            {
+                Count = 1,
+                //för att kunna lägga till en produkt i kundkorg
+                Product = _unitOfWork.Product.GetFirstOrDefault
+                (u => u.Id == id, includeProperties: "Genre")
+            };
+        //returna cartObjektet till vyn
+            return View(cartObj);
+
         }
 
         public IActionResult Privacy()
