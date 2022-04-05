@@ -44,7 +44,7 @@
     --bs-danger: #e74c3c;
     --bs-light: #ecf0f1;
     --bs-dark: #7b8a8b;
-    --bs-primary-rgb: 44, 62, 80;
+    --bs-primary-rgb: 73, 94, 115;
     --bs-secondary-rgb: 149, 165, 166;
     --bs-success-rgb: 24, 188, 156;
     --bs-info-rgb: 52, 152, 219;
@@ -63,8 +63,8 @@
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
-    --bs-body-color: #212529;
-    --bs-body-bg: #fff;
+    --bs-body-color: #0d0d0d;
+    --bs-body-bg: #fef9f8;
 }
 
 *,
