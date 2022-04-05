@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - |Almedal Game Store|</title>
+    <title>@ViewData["Title"]Almedal Game Store</title>
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AlmedalGameStoreWeb.styles.css" asp-append-version="true" />
@@ -16,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Almedal Game Store</a>
+    <a class="navbar-brand" asp-area="Guest" asp-controller="Home" asp-action="Index"><img src="\images\AGS_blue_text.png" alt="AGS Logo" width="150" height="75"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
