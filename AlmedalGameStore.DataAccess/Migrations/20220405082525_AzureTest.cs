@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AlmedalGameStore.DataAccess.Migrations
 {
-    public partial class firstMigration : Migration
+    public partial class AzureTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
