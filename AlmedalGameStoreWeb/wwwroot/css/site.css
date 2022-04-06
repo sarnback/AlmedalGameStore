@@ -24,12 +24,14 @@ body {
 
 .showcase-start {
     background: url(/images/Almedal_IMG_0263_SAJO_1920x1080-1920x1280.jpg) center center no-repeat;
-    width: 100%;
+    width: 100vw;
     height: 60vh;
     padding: 10px;
     display: flex;
     align-items: center;
     margin-top: -90px;
+    margin-left: -110px;
+    
 }
 
 .ags-motto {
