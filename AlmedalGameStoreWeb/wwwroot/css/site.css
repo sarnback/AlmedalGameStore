@@ -19,7 +19,7 @@ body {
 }
 
 .navbar{
-    opacity: 0.85;
+    opacity: 1;
 }
 
 .showcase-start {
@@ -28,10 +28,7 @@ body {
     height: 60vh;
     padding: 10px;
     display: flex;
-    align-items: center;
-    margin-top: -90px;
-    margin-left: -110px;
-    
+    align-items: center;       
 }
 
 .ags-motto {
