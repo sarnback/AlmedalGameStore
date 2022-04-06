@@ -22,25 +22,7 @@ function AddProductToCartPerProductId(id) {
 
 // Resolves product object per id. Intended to be called from
 // within the cart view (mock-up)
-function ResolveProductPerProductId(requestedId) {
-    let object = _unitOfWork.Product.GetFirstOrDefault(x => x.requestedId === Id);
-    alert(JSON.stringify(object));
-
-    // Fulhaxx GET JSON
-    //var targetUrl = <%= (new JavaScriptSerializer()).Serialize("http://url/") %>;
-}
-
-
-//C# method
-//public IActionResult Details(int id)
-//{
-//    Cart cartObj = new ()
-//    {
-//        Count = 1,
-//            //för att kunna lägga till en produkt i kundkorg
-//            Product = _unitOfWork.Product.GetFirstOrDefault
-//                (u => u.Id == id, includeProperties: "Genre")
-//    };
-//    //returna cartObjektet till vyn
-//    return View(cartObj);
+//function ResolveProductPerProductId(requestedId) {
+//    let object = _unitOfWork.Product.GetFirstOrDefault(x => x.requestedId === Id);
+//    alert(JSON.stringify(object));
 //}

@@ -1,29 +1,43 @@
 ﻿using AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository;
+using AlmedalGameStore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
 {
+
+    [Area("Guest")]
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        public CartVM CartVM { get; set; }
 
         public CartController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // Get JSON product objects per product ID
-        public IActionResult Details(int id)
+        public IActionResult Index()
         {
-            Cart cartObj = new()
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            CartVM = new CartVM()
             {
-                Count = 1,
-                //för att kunna lägga till en produkt i kundkorg
-                Product = _unitOfWork.Product.GetFirstOrDefault
-                        (u => u.Id == id, includeProperties: "Genre")
+                ListCart = _unitOfWork.Cart.GetAll(
+                    u => u.ApplicationUser == claim.Value, includeProperties: "Product")
             };
-            //returna cartObjektet till vyn
-            return View(cartObj);
+
+            foreach (var cart in CartVM.ListCart)
+            {
+                cart.Price = GetPrice(cart.Count, cart.Product.Price);
+                CartVM.Order.OrderTotal += (cart.Price * cart.Count);
+            }
+            return View(CartVM);
+        }
+        private double GetPrice(double quantity, double price)
+        {
+            return price;
         }
     }
 }
