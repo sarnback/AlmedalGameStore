@@ -1,4 +1,14 @@
-﻿@model IEnumerable<Product>
+﻿<script>
+function ResolveProductPerProductId(requestedId) {
+    let object = _unitOfWork.Product.GetFirstOrDefault(x => x.requestedId === Id);
+    alert(JSON.stringify(object));
+
+    // Fulhaxx GET JSON
+    //var targetUrl = <%= (new JavaScriptSerializer()).Serialize("http://url/") %>;
+}
+</script>
+
+@model IEnumerable<Product>
 
 <div class="row pb-3">
     @foreach(var product in Model)
@@ -20,7 +30,7 @@
                         </div>
                         <div>
                             <a asp-action="Details" class="btn btn-primary form-control"
-                            asp-route-id="@product.Id">Läs Mer</a>
+                            asp-route-id="@product.Id">Ta bort från varukorg</a>
                         </div>
 
                 </div>
