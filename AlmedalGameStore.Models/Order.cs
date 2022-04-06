@@ -19,7 +19,8 @@ namespace AlmedalGameStore.Models
         [ForeignKey("ApplicationUserId")][ValidateNever] public string ApplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
-        [Required] public int CustomerId { get; set; }
+
+        [Required] public string Name  { get; set; }
 
         [Required] public string Street { get; set; }
 
@@ -37,6 +38,8 @@ namespace AlmedalGameStore.Models
         [Required] public string Address { get; set; }
 
         [Required] public PaymentMethod PaymentMethod { get; set; }
+
+        [Required] public ShippingMethod ShippingMethod { get; set; }
 
         [Required] public double OrderTotal { get; set; }
 

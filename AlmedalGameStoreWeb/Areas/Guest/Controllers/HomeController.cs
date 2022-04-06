@@ -43,6 +43,14 @@ namespace AlmedalGameStoreWeb.Controllers
 
         }
 
+        public IActionResult Checkout()
+        {
+            // Hämta array med tillagda produkter från den andra Jonas
+            // och skicka vidare det på något sätt.
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

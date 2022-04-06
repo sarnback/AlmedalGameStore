@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using System.Security.Cryptography.X509Certificates
+@model Order
+@{
+    var currentOrder = new Order();
+}
+
+<div>
+    <form id="shipping-details-form" class="form-group mb-5">
+        Förnamn: <input type="text" name="FirstName" class="form-control" required>
+        Efternamn: <input type="text" name="LastName" class="form-control" required>
+        Epost: <input type="text" name="email" class="form-control" required>
+        Telefonnummer: <input type="text" name="PhoneNumber" class="form-control" required>
+        Adress: <input type="text" name="address" class="form-control" required>
+        Postnummer: <input type="text" maxlength="6" name="address" class="form-control" required>
+        Stad: <input type="text" name="address" class="form-control" required>
+        Fraktmetod: 
+        <select class="form-control form-select" name="shipping-method">
+            <option value="1">Hämta i butik</option>
+            <option value="2">Skicka hem</option>
+        </select>
+        <div>
+            <a id="cancel" asp-action="Index" class="btn btn-danger me-3">Gå tillbaka</a>
+            <button type="submit" onclick="return " class="btn btn-success">Vidare till nästa steg</button>
+        </div>
+    </form>
+</div>
