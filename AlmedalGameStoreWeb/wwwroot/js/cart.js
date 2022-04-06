@@ -26,3 +26,28 @@ function AddProductToCartPerProductId(id) {
 //    let object = _unitOfWork.Product.GetFirstOrDefault(x => x.requestedId === Id);
 //    alert(JSON.stringify(object));
 //}
+//public void CSharpFunction(dynamic length)
+//{
+//    for (int i = 0; i < length; i++)
+//    {
+//        dynamic obj = webBrowser1.Document.InvokeScript("getObj", new object[] { i });
+
+//        string val = obj.MyClassValue;
+//    }
+//}
+//<script type="text/javascript">
+
+//var x = [];
+//x.push({MyClassValue: "Hello"});
+//x.push({MyClassValue: "People"});
+
+//function test() {
+//  window.external.CSharpFunction(x.length);
+//}
+
+//function getObj(i) {
+//  return x[i];
+//}
+
+//</script>
+//<button onclick="test();" />

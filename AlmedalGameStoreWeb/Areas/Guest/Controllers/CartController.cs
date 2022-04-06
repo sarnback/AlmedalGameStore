@@ -22,11 +22,11 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            CartVM = new CartVM()
-            {
-                ListCart = _unitOfWork.Cart.GetAll(
-                    u => u.ApplicationUser == claim.Value, includeProperties: "Product")
-            };
+            //CartVM = new CartVM()
+            //{
+            //    ListCart = _unitOfWork.Cart.GetAll(
+            //        u => u.ApplicationUser == claim.Value, includeProperties: "Product")
+            //};
 
             foreach (var cart in CartVM.ListCart)
             {
