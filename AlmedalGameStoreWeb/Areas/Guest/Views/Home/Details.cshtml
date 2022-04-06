@@ -35,7 +35,7 @@
                             </div>
                             <div class="row pl-2">
                                 <div class="col-2 text-primary"><h4>Antal</h4></div>
-                                <div class="col-10"><input asp-for="Count" class="form-control"  /></div>
+                                <div class="col-10"><input asp-for="Count" id="item-count" class="form-control"  /></div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 offset-lg-1 text-center">
@@ -51,7 +51,7 @@
                         asp-action="Index">Tillbaka till Produkter</a>
                     </div>
                     <div class="col-12 col-md-6 pb-1">
-                        <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Lägg i kundkorg</button>
+                        <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;" onclick="AddProductToCartPerProductId(userPath[4])">Lägg i kundkorg</button>
                     </div>
                 </div>
             </div>
