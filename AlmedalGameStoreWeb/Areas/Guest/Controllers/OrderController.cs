@@ -13,7 +13,7 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
+        //Visa orderbekräftelse.
         public IActionResult Index()
         {
             return View();

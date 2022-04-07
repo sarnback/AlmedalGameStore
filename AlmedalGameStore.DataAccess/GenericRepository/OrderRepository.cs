@@ -18,6 +18,11 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
             _db = db;
         }
 
+        public void Create(Order obj)
+        {
+            _db.Orders.Add(obj);
+        }
+
         public void Update(Order obj)
         {
             _db.Orders.Update(obj);
