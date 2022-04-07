@@ -19,7 +19,10 @@ namespace AlmedalGameStore.Models
 
         [Range(1, 1000)] public int Count { get; set; }
 
-        [ValidateNever] public string ApplicationUser { get; set; }
+        public string ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        [ValidateNever]
+        public ApplicationUser ApplicationUser { get; set; }
 
         [NotMapped] public double Price { get; set; }
 

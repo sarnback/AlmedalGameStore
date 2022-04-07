@@ -6,7 +6,7 @@ using System.Security.Claims;
 namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
 {
 
-    [Area("Guest")]
+    //[Area("Guest")]
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -19,8 +19,8 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
 
         public IActionResult Index()
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            //var claimsIdentity = (ClaimsIdentity)User.Identity;
+            //var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             //CartVM = new CartVM()
             //{
@@ -28,11 +28,11 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
             //        u => u.ApplicationUser == claim.Value, includeProperties: "Product")
             //};
 
-            foreach (var cart in CartVM.ListCart)
-            {
-                cart.Price = GetPrice(cart.Count, cart.Product.Price);
-                CartVM.Order.OrderTotal += (cart.Price * cart.Count);
-            }
+            //foreach (var cart in CartVM.ListCart)
+            //{
+            //    cart.Price = GetPrice(cart.Count, cart.Product.Price);
+            //    CartVM.Order.OrderTotal += (cart.Price * cart.Count);
+            //}
             return View(CartVM);
         }
         private double GetPrice(double quantity, double price)

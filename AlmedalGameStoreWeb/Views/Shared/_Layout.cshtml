@@ -39,7 +39,7 @@
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Genre" asp-action="Index">Genre</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Produkt</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                               @* <a class="dropdown-item" href="#">Separated link</a>*@
                             </div>
                         </li>
                         <li class="nav-item">
@@ -48,21 +48,24 @@
                             </a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                   
+
+                 <partial name="_LoginPartial" />
+                    
+
                     </form>
                    <button class="btn btn-primary Cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> 
                    Cart <span>0</span>
                    </button>
                    <img src="images/products/shopping_cart.svg" style="position: relative; left: -0.4em;"/>
+
                 </div>
             </div>
         </nav>
     </header>
     @*<div class ="showcase-start">
         <div class ="ags-motto">
-            <h1>Spel är mer än bara lek!</h1>
+        <h1>Spel är mer än bara lek!</h1>
         </div>
     </div>*@
 
