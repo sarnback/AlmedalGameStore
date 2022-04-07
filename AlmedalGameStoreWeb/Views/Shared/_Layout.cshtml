@@ -45,11 +45,12 @@
         <input class="form-control me-sm-2" type="text" placeholder="Search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
       </form>
-    </div>
-  </div>
+    
+      <button class="btn btn-primary Cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> 
+          Cart <span> 0</span>
+          </button>
+          <img src="images/products/shopping_cart.svg" style="position: relative; left: -0.4em;" />
 </nav>
-
-      
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -57,6 +58,25 @@
             @RenderBody()
         </main>
     </div>
+
+
+    <div class="container-md">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+     <h1 class="offcanvas-title">My Cart</h1>
+</div>
+<div class="offcanvas-body">
+    <p>Products</p>
+
+    
+    
+    <button class="btn btn-secondary" type="button" <a href="https://google.com"></a>Check out</button>
+  </div>
+        
+  </div>
+</div>
+
+
 
     <footer class="footer fixed-bottom text-center text-muted bg-primary">
         <div class="container">
