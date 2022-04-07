@@ -10,8 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//Det säger att vi använder SQL server och hämtar connectionstring i appSettings med hjälp av DefaultConnection
-//inuti ett block som heter ConnectionStrings
+//Här sätter vi upp vår DBContext mha Azure Key Vault Secret och connectionstring till den
 var secretUri = builder.Configuration.GetSection("KeyVaultSecrets:SqlConnection").Value;
 
 var KeyVaultToken = new AzureServiceTokenProvider().KeyVaultTokenCallback;
