@@ -23,12 +23,16 @@ body {
 }
 
 .showcase-start {
-    background: url(/images/Almedal_IMG_0263_SAJO_1920x1080-1920x1280.jpg) center center no-repeat;
-    width: 100vw;
-    height: 60vh;
+    background: url(/images/ags-background.jpg) top center no-repeat;
+    /*width: 100vw;
+    height: 40vh;*/
+    max-width: 100%;
+    height: 40vh;
+    background-size: 100%;
     padding: 10px;
     display: flex;
-    align-items: center;       
+    align-items: center;
+    opacity: 0.9;
 }
 
 .ags-motto {
@@ -44,6 +48,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.9;
+    opacity: 0.8;
     text-align: center;
 }
