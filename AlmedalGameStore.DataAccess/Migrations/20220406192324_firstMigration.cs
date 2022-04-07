@@ -109,7 +109,7 @@ namespace AlmedalGameStore.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -117,6 +117,7 @@ namespace AlmedalGameStore.DataAccess.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    ShippingMethod = table.Column<int>(type: "int", nullable: false),
                     OrderTotal = table.Column<double>(type: "float", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false)
                 },

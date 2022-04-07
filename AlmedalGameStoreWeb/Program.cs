@@ -2,18 +2,24 @@ using AlmedalGameStore.DataAccess;
 using AlmedalGameStore.DataAccess.GenericRepository;
 using AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using AlemedalGameStore.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//Det säger att vi använder SQL server och hämtar connectionstring i appSettings med hjälp av DefaultConnection
+//Det sï¿½ger att vi anvï¿½nder SQL server och hï¿½mtar connectionstring i appSettings med hjï¿½lp av DefaultConnection
 //inuti ett block som heter ConnectionStrings
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 //Whenever we request a object of IUnitOFWork, ger de oss implementation som vi definierat inuti UnitOfWork,
-//bra för dependicy injections
+//bra fï¿½r dependicy injections
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var app = builder.Build();
@@ -30,8 +36,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+app.MapRazorPages();
 ////However the Application's Startup code may require additional changes for things to work end to end.
 //Add the following code to the Configure method in your Application's Startup class if not already done:
 app.MapControllerRoute(

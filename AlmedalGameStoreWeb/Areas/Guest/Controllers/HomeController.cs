@@ -1,10 +1,13 @@
 ﻿
+using AlemedalGameStore.Utility;
 using AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository;
 using AlmedalGameStore.Models;
 using AlmedalGameStore.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace AlmedalGameStoreWeb.Controllers
 {
@@ -38,9 +41,41 @@ namespace AlmedalGameStoreWeb.Controllers
                 Product = _unitOfWork.Product.GetFirstOrDefault
                 (u => u.Id == id, includeProperties: "Genre")
             };
-        //returna cartObjektet till vyn
+            //returna cartObjektet till vyn
             return View(cartObj);
+        }
 
+    
+    [HttpPost]
+        [ValidateAntiForgeryToken]
+        
+        [Authorize]
+        public IActionResult Details(Cart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCart.ApplicationUserId = claim.Value;
+
+            Cart cartFromDb = _unitOfWork.Cart.GetFirstOrDefault(
+                u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
+
+
+            if (cartFromDb == null)
+            {
+
+                _unitOfWork.Cart.Add(shoppingCart);
+                
+                //HttpContext.Session.SetInt32(SD.SessionCart,
+                //    _unitOfWork.Cart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
+            }
+            else
+            {
+                _unitOfWork.Cart.IncrementCount(cartFromDb, shoppingCart.Count);
+                //_unitOfWork.Save();
+            }
+
+            _unitOfWork.Save();
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Checkout()
