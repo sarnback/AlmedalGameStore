@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlmedalGameStore.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220407185540_addedNewMigration")]
+    [Migration("20220407205442_addedNewMigration")]
     partial class addedNewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

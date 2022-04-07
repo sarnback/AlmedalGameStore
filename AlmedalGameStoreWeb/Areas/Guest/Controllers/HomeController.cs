@@ -34,18 +34,20 @@ namespace AlmedalGameStoreWeb.Controllers
         {
             Cart cartObj = new()
             {
+                //Shoppingcart
                 Count = 1,
                 ProductId = productId,
                 Product = _unitOfWork.Product.GetFirstOrDefault
                 (u => u.Id == productId, includeProperties: "Genre")
             };
-            //returna cartObjektet till vyn
             return View(cartObj);
-        }
 
+        }
+        //makes only loged in users to add items to cart
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+
+
         public IActionResult Details(Cart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -66,6 +68,15 @@ namespace AlmedalGameStoreWeb.Controllers
 
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
+
+            Cart cartObj = new()
+            {
+                //Shoppingcart
+                Count = 1,
+                //Course = _unitOfWork.Course.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,ClassType")
+            };
+            return View(cartObj);
+
         }
 
 
