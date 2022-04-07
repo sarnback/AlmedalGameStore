@@ -15,9 +15,13 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
             _db = db;
             Genre = new GenreRepository(_db);
             Product = new ProductRepository(_db);
+            Order = new OrderRepository(_db);
+            Cart = new CartRepository(_db);
         }
         public IGenreRepository Genre { get; private set; }
         public IProductRepository Product { get; private set; }
+        public IOrderRepository Order { get; private set; }
+        public ICartRepository Cart { get; private set; }
 
         public void Save()
         {

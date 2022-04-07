@@ -21,5 +21,11 @@ namespace AlemedalGameStore.Utility
             CreditCard,
             InStore
         }
+
+        public enum ShippingMethod
+        {
+            PickUpInStore,
+            SendHome
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository
         IGenreRepository Genre { get; }
         IProductRepository Product { get; }
         //global metod
+        ICartRepository Cart { get; }
+        IOrderRepository Order { get; }
         void Save();
     }
 }

@@ -6,6 +6,7 @@
                     <h1 class="text-white-50">@Model.Product.Title</h1>
                     <p class="text-warning">av @Model.Product.Publisher</p>
                 </div>
+
                 <div class="col-12 col-md-6 text-end pt-4">
                     
                     <span class="badge bg-warning pt-2" style="height:30px;">@Model.Product.Genre.Name</span>
@@ -17,7 +18,7 @@
                         <div class="col-8 col-lg-8">
 
                             <div class="row pl-2">
-                                <h5 class="text-muted">REQ ÅLDER : @Model.Product.PgRating år</h5>
+                                <h5 class="text-muted">REK ÅLDER : @Model.Product.PgRating år</h5>
                             </div>
                             <div class="row pl-2">
                                 <h5 class="text-muted pb-2">Pris @Model.Product.Price.ToString("c")</h5>
@@ -26,7 +27,7 @@
                                 <h5 class="text-muted pb-2">Systemrekommendation @Model.Product.SystemReq</h5>
                             </div>
                             <div class="row pl-2">
-                                <h5 class="text-muted pb-2">Utgivningsdatum @Model.Product.ReleaseDate.ToString("dd/mm/yyyy")</h5>
+                                <h5 class="text-muted pb-2">Utgivningsdatum @Model.Product.ReleaseDate.ToString("MMMM dd, yyyy")</h5>
                             </div>
 
                             <div class="row pl-2">
@@ -34,7 +35,7 @@
                             </div>
                             <div class="row pl-2">
                                 <div class="col-2 text-primary"><h4>Antal</h4></div>
-                                <div class="col-10"><input asp-for="Count" class="form-control"  /></div>
+                                <div class="col-10"><input asp-for="Count" id="item-count" class="form-control"  /></div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 offset-lg-1 text-center">
@@ -50,7 +51,7 @@
                         asp-action="Index">Tillbaka till Produkter</a>
                     </div>
                     <div class="col-12 col-md-6 pb-1">
-                        <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Lägg i kundkorg</button>
+                        <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;" onclick="AddProductToCartPerProductId(userPath[4])">Lägg i kundkorg</button>
                     </div>
                 </div>
             </div>
