@@ -19,6 +19,7 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
         public GenericRepository(ApplicationDbContext db)
         {
             _db = db;
+            //_db.Carts.Include(u => u.Product);
             
             //sätter dbSet till den klassen som anropar vårt repository "Basic setup"
             this.dbSet = _db.Set<T>();
@@ -30,14 +31,16 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
-            //komplett dbset!, Assigns to a class so if it directly return the db set it will be sufficent
-            // includeProp - "Genre,Fler klasser" 
             IQueryable<T> query = dbSet;
-            if(includeProperties != null)
+            if (filter != null)
             {
-                foreach(var includeProp in includeProperties.Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
+                query = query.Where(filter);
+            }
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
                 }
@@ -45,37 +48,23 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
-            if (tracked)
+            IQueryable<T> query = dbSet;
+            if (filter != null)
             {
-                IQueryable<T> query = dbSet;
-
                 query = query.Where(filter);
-                if (includeProperties != null)
-                {
-                    foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                    {
-                        query = query.Include(includeProp);
-                    }
-                }
-                return query.FirstOrDefault();
             }
-            else
+            //If there are like two ,, between Category and ClassType this will split and make it work 
+            //It will pass the individual property one at the time
+            if (includeProperties != null)
             {
-                IQueryable<T> query = dbSet.AsNoTracking();
-
-                query = query.Where(filter);
-                if (includeProperties != null)
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                    {
-                        query = query.Include(includeProp);
-                    }
+                    query = query.Include(includeProp);
                 }
-                return query.FirstOrDefault();
             }
-
+            return query.FirstOrDefault();
         }
 
         public void Remove(T entity)

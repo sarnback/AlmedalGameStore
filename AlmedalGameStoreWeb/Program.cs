@@ -22,6 +22,12 @@ builder.Services.AddSingleton<IEmailSender, EmailSender>();
 //bra f�r dependicy injections
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LoginPath = $"/Identity/Account/Logout";
+    options.LoginPath = $"/Identity/Account/AccessDenied";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +43,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
+
 app.UseAuthorization();
 app.MapRazorPages();
 ////However the Application's Startup code may require additional changes for things to work end to end.

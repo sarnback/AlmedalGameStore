@@ -11,7 +11,7 @@ namespace AlmedalGameStore.Models
     public class Product
     {
         public int Id { get; set; }
-        [Required,MaxLength(70)]
+        [Required]
         
         public string Title { get; set; }
         [Required]
