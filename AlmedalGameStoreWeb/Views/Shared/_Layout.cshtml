@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,7 +33,6 @@
                         <li class="nav-item">
 
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADMIN</a>
                             <div class="dropdown-menu">
@@ -51,11 +50,15 @@
                     </ul>
                    
 
-                   @* <form class="d-flex">
-                        <input class="form-control me-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>*@
-                     <partial name="_LoginPartial" />
+                 <partial name="_LoginPartial" />
+                    
+
+                    </form>
+                   <button class="btn btn-primary Cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> 
+                   Cart <span>0</span>
+                   </button>
+                   <img src="images/products/shopping_cart.svg" style="position: relative; left: -0.4em;"/>
+
                 </div>
             </div>
         </nav>
@@ -64,13 +67,29 @@
         <div class ="ags-motto">
         <h1>Spel är mer än bara lek!</h1>
         </div>
-        </div>*@
+    </div>*@
+
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>
+
+
+    <div class="container-md">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h1 class="offcanvas-title">My Cart</h1>
+            </div>
+            <div class="offcanvas-body">
+            <p>Products</p>
+            <button class="btn btn-secondary" type="button" <a href="https://google.com"></a>Check out</button>
+            </div>
+        </div>
+    </div>
+
+
 
     <footer class="footer fixed-bottom text-center text-muted bg-primary">
         <div class="container">
