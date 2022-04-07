@@ -12,6 +12,8 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
         private readonly IUnitOfWork _unitOfWork;
         public CartVM CartVM { get; set; }
 
+        public OrderVM OrderVM { get; set; }
+
         public CartController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -38,6 +40,14 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
         private double GetPrice(double quantity, double price)
         {
             return price;
+        }
+
+        public IActionResult Checkout()
+        {
+            // Hämta array med tillagda produkter från Jonas Lind
+            // och skicka vidare det på något sätt.
+
+            return View(OrderVM);
         }
     }
 }
