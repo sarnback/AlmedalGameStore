@@ -29,7 +29,7 @@ namespace AlmedalGameStore.Models
 
         [NotMapped] public double Price { get; set; }
 
-        public DateTime LastEdited { get; set; }
+        public DateTime LastEdited { get; set; } = DateTime.Now;
 
     }
 }

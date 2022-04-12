@@ -124,7 +124,7 @@ namespace AlmedalGameStoreWeb.Areas.Identity.Pages.Account
             {
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Guest)).GetAwaiter().GetResult();
+              
                 ReturnUrl = returnUrl;
                 ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             }
@@ -164,7 +164,7 @@ namespace AlmedalGameStoreWeb.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
                     if(Input.Role== null)
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Role_Guest);
+                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
                     }
                     else
                     {

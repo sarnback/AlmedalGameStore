@@ -18,13 +18,13 @@ namespace AlmedalGameStore.DataAccess.GenericRepository
             _db = db;
         }
 
-        public int DecrementCount(Cart cart, int count)
+        public int MinusCount(Cart cart, int count)
         {
             cart.Count -= count;
             return cart.Count;
         }
 
-        public int IncrementCount(Cart cart, int count)
+        public int PlusCount(Cart cart, int count)
         {
             cart.Count += count;
             return cart.Count;

@@ -64,7 +64,7 @@ namespace AlmedalGameStoreWeb.Controllers
                 productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
                 return View(productVM);
             }
-            
+
         }
         [HttpPost]
         //injektar en key som blir validated i post metod automatiskt
@@ -147,7 +147,7 @@ namespace AlmedalGameStoreWeb.Controllers
             _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
-        
+
 
 
 

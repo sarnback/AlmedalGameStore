@@ -12,14 +12,15 @@ using System.Security.Claims;
 
 namespace AlmedalGameStoreWeb.Controllers
 {
-    
-    [Area("Guest")]
+
+    [Area("Customer")]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger,IUnitOfWork unitOfWork)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -46,6 +47,7 @@ namespace AlmedalGameStoreWeb.Controllers
         //makes only loged in users to add items to cart
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
 
 
         public IActionResult Details(Cart shoppingCart)
@@ -63,7 +65,7 @@ namespace AlmedalGameStoreWeb.Controllers
             }
             else
             {
-                _unitOfWork.Cart.IncrementCount(cartFromDb, shoppingCart.Count);
+                _unitOfWork.Cart.PlusCount(cartFromDb, shoppingCart.Count);
             }
 
             _unitOfWork.Save();
@@ -80,23 +82,17 @@ namespace AlmedalGameStoreWeb.Controllers
         }
 
 
-        public IActionResult Checkout()
-        {
-            // Hämta array med tillagda produkter från den andra Jonas
-            // och skicka vidare det på något sätt.
-
-            return View();
-        }
+       
 
         public IActionResult Privacy()
         {
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

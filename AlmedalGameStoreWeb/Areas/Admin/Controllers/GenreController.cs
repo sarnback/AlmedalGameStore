@@ -44,10 +44,7 @@ namespace AlmedalGameStoreWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Genre obj)
         {
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "The Name of the Genre and the Display Order cannot be the same");
-            }
+           
             //för att se att ens model är valid med .net core
             if (ModelState.IsValid)
             {
@@ -95,10 +92,7 @@ namespace AlmedalGameStoreWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Genre obj)
         {
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "The Name of the Genre and the Display Order cannot be the same");
-            }
+          
             //för att se att ens model är valid med .net core
             if (ModelState.IsValid)
             {

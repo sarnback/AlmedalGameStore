@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="Guest" asp-controller="Home" asp-action="Index"><img src="\images\plain_logo_nobg.png" alt="AGS Logo" width="60" height="60"><img src="\images\AGS_text_nobg.png" alt="AGS text" width="120" height="60"></a>
+                <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="\images\plain_logo_nobg.png" alt="AGS Logo" width="60" height="60"><img src="\images\AGS_text_nobg.png" alt="AGS text" width="120" height="60"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Guest" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @*asp-area sätter vem som har tillgång till den vyn*@
                         <li class="nav-item">
@@ -39,25 +39,21 @@
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Genre" asp-action="Index">Genre</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Produkt</a>
                                 <div class="dropdown-divider"></div>
-                               @* <a class="dropdown-item" href="#">Separated link</a>*@
+                                @* <a class="dropdown-item" href="#">Separated link</a>*@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class=nav-link asp-area="Guest" asp-controller="Cart" asp-action="Index">
-                               Cart
+                            <a class=nav-link asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                Cart
                             </a>
                         </li>
                     </ul>
-                   
 
-                 <partial name="_LoginPartial" />
-                    
 
-                   
-                   <button class="btn btn-primary Cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> 
-                   Cart <span>0</span>
-                   </button>
-                   <img src="images/products/shopping_cart.svg" style="position: relative; left: -0.4em;"/>
+                    <partial name="_LoginPartial" />
+
+
+
 
                 </div>
             </div>
@@ -67,7 +63,7 @@
         <div class ="ags-motto">
         <h1>Spel är mer än bara lek!</h1>
         </div>
-    </div>*@
+        </div>*@
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -77,17 +73,7 @@
     </div>
 
 
-    <div class="container-md">
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h1 class="offcanvas-title">My Cart</h1>
-            </div>
-            <div class="offcanvas-body">
-            <p>Products</p>
-            <button class="btn btn-secondary" type="button" <a href="https://google.com"></a>Check out</button>
-            </div>
-        </div>
-    </div>
+
 
 
 

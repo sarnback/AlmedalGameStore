@@ -10,8 +10,8 @@ namespace AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository
 {
     public interface ICartRepository : IGenericRepository<Cart>
     {
-        int IncrementCount(Cart shoppingCart, int count);
-        int DecrementCount(Cart shoppingCart, int count);
+        int PlusCount(Cart shoppingCart, int count);
+        int MinusCount(Cart shoppingCart, int count);
 
 
     }
