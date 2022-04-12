@@ -10,9 +10,7 @@ namespace AlmedalGameStore.Models
         [Required]
         public string Name { get; set; }
 
-        [DisplayName("Display Order")]
-        [Range(1,1000,ErrorMessage="Display order must be between 1 and 1000")]
-        public int DisplayOrder { get; set; }
+      
 
         
     }

@@ -16,7 +16,10 @@ namespace AlmedalGameStore.Models
         
         public int Id { get; set; }
 
-        [ForeignKey("ApplicationUserId")][ValidateNever] public string ApplicationUserId { get; set; }
+       
+         public string ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        [ValidateNever]
 
         public ApplicationUser ApplicationUser { get; set; }
 
@@ -34,6 +37,8 @@ namespace AlmedalGameStore.Models
         [ForeignKey("ProductId")]
         [ValidateNever]
         public Product Product { get; set; }
+        public int Count { get; set; }
+        public double Price { get; set; }
 
         [Required] public string Address { get; set; }
 

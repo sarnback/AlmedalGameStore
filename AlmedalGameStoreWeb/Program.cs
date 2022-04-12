@@ -22,6 +22,16 @@ builder.Services.AddSingleton<IEmailSender, EmailSender>();
 //bra f�r dependicy injections
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+//bygger application coockie där vi kan sätta egna paths, exempelvis om en icke registrerad kund
+//försöker att köpa en produkt så sätts AccessDeniedPath igång och ber gästen att logga in
+//eftersom vi använder cookies så "sparas" kundkorgsvyn för gästen och tas till den sidan efter ha 
+//skapat sitt account
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,12 +47,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
+
 app.UseAuthorization();
 app.MapRazorPages();
 ////However the Application's Startup code may require additional changes for things to work end to end.
 //Add the following code to the Configure method in your Application's Startup class if not already done:
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Guest}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
