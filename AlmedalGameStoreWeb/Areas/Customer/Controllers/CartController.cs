@@ -44,11 +44,44 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
             return View(CartVM);
         }
 
-
+        [HttpGet]
         public IActionResult Checkout()
         {
-            // Hämta array med tillagda produkter från den andra Jonas
-            // och skicka vidare det på något sätt.
+            //Hämtar all data från användare till Checkout + Checkout view
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            CartVM = new CartVM()
+            {
+                ListCart = _unitOfWork.Cart.GetAll(u => u.ApplicationUserId == claim.Value,
+                includeProperties: "Product"),
+                Order = new()
+            };
+            CartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+            CartVM.Order.Name = CartVM.Order.ApplicationUser.Name;
+            CartVM.Order.Address = CartVM.Order.ApplicationUser.StreetAddress;
+            CartVM.Order.PostalCode = CartVM.Order.ApplicationUser.PostalCode;
+            //Stad - Saknas i Order? (Har en address , en street, är det samma?)
+            CartVM.Order.Street = CartVM.Order.ApplicationUser.City;
+           //Fraktmetod saknas applicationUser?
+
+            foreach (var cart in CartVM.ListCart)
+            {
+                cart.Price = GetPrice(cart.Count, cart.Product.Price);
+                CartVM.Order.OrderTotal += (cart.Price * cart.Count);
+            }
+
+
+            return View(CartVM);
+        }
+        [HttpPost]
+        public IActionResult CheckoutPOST()
+        {
+            //Stripe inställningar
+
+            //Swish inställningar
+
+            //Fysisk inställningar
+
 
             return View();
         }
