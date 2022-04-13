@@ -16,6 +16,8 @@ namespace AlmedalGameStore.Models
         
         public int Id { get; set; }
 
+        [Required]
+        public Guid OrderId { get; set; }
        
          public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
@@ -31,7 +33,7 @@ namespace AlmedalGameStore.Models
 
         [Required] public DateTime OrderDate { get; set; }
 
-        [Required] public OrderStatus Type { get; set; }
+        [Required] public OrderStatus Status { get; set; }
 
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
