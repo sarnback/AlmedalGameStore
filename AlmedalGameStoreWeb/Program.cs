@@ -4,13 +4,16 @@ using AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Azure.KeyVault;
+using Microsoft.AspNetCore.Identity;
+using AlemedalGameStore.Utility;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//Här sätter vi upp vår DBContext mha Azure Key Vault Secret och connectionstring till den
+//Det säger att vi använder SQL server och hämtar connectionstring i appSettings med hjälp av DefaultConnection
+//inuti ett block som heter ConnectionStrings
 var secretUri = builder.Configuration.GetSection("KeyVaultSecrets:SqlConnection").Value;
 
 var KeyVaultToken = new AzureServiceTokenProvider().KeyVaultTokenCallback;
