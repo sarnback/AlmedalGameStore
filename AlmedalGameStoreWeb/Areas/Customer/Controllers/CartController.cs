@@ -93,7 +93,7 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
                 {
                     OrderId = orderId,
                     ProductId = cart.ProductId,
-                    Price = cart.Price,
+                    Price = cart.Product.Price,
                     Amount = cart.Count,
                     Address = CartVM.Order.Address,
                     Name = CartVM.Order.Name,
