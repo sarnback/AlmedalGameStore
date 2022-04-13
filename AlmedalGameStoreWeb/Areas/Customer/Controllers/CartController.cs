@@ -87,19 +87,6 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
             var ListCart = _unitOfWork.Cart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
 
-            //CartVM.Order.PaymentMethod = Enums.PaymentMethod.CreditCard;
-            //CartVM.Order.Status = Enums.OrderStatus.Started;
-            //CartVM.Order.OrderDate = DateTime.Now;
-            //CartVM.Order.ApplicationUserId = claim.Value;
-
-            //foreach (var cart in CartVM.ListCart)
-            //{
-            //    cart.Price = GetPrice(cart.Count, cart.Product.Price);
-            //    CartVM.Order.OrderTotal += (cart.Price * cart.Count);
-            //}
-
-            //_unitOfWork.Order.Add(CartVM.Order);
-
             foreach (var cart in ListCart)
             {
                 Order order = new()
