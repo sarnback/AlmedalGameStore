@@ -105,6 +105,7 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
                     Status = Enums.OrderStatus.Started
                 };
                 _unitOfWork.Order.Add(order);
+                _unitOfWork.Cart.Remove(cart);
             }
 
             // ToDo: Implementera tömning av kundvagn
