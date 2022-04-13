@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using AlemedalGameStore.Utility;
+using AlmedalGameStore.Models;
 
 namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
 {
@@ -73,6 +75,47 @@ namespace AlmedalGameStoreWeb.Areas.Guest.Controllers
 
             return View(CartVM);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult StripeCheckoutPOST()
+        {
+            var orderId = Guid.NewGuid();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var ListCart = _unitOfWork.Cart.GetAll(u => u.ApplicationUserId == claim.Value,
+                includeProperties: "Product");
+
+            foreach (var cart in ListCart)
+            {
+                Order order = new()
+                {
+                    OrderId = orderId,
+                    ProductId = cart.ProductId,
+                    Price = cart.Price,
+                    Amount = cart.Count,
+                    Address = CartVM.Order.Address,
+                    Name = CartVM.Order.Name,
+                    PostalCode = CartVM.Order.PostalCode,
+                    Street = CartVM.Order.Street,
+                    OrderDate = DateTime.Now,
+                    ApplicationUserId = claim.Value,
+                    PaymentMethod = Enums.PaymentMethod.CreditCard,
+                    Status = Enums.OrderStatus.Started
+                };
+                _unitOfWork.Order.Add(order);
+            }
+
+            // ToDo: Implementera tömning av kundvagn
+            
+            _unitOfWork.Save();
+
+            // ToDo: View funkar inte men det löser sig i och med stripe
+
+            return View(CartVM);
+        }
+
         [HttpPost]
         public IActionResult CheckoutPOST()
         {
