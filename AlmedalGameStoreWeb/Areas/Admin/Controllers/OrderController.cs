@@ -1,6 +1,8 @@
 ﻿using AlmedalGameStore.DataAccess.GenericRepository.IGenericRepository;
 using AlmedalGameStore.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using AlemedalGameStore.Utility;
 
 namespace AlmedalGameStoreWeb.Controllers
 {
@@ -21,6 +23,23 @@ namespace AlmedalGameStoreWeb.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var ListOrder = _unitOfWork.Order.GetAll(o => o.OrderId == id, includeProperties: "Product");
+
+            if (ListOrder == null)
+            {
+                return NotFound();
+            }
+            
+            return View(ListOrder.ToList());
         }
 
 
